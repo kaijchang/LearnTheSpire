@@ -5,6 +5,7 @@ import json
 import random
 
 from card_name_to_vector import card_name_to_vector
+from learnthespirelogger import logger
 
 
 def choice_dict_to_vectors(choice_dict, relics):
@@ -36,6 +37,11 @@ if __name__ == '__main__':
         with open('{character_folder}_TRAINING_DATA'.format(character_folder=character_folder),
                   'w') as training_data_file:
             json.dump([], training_data_file)
+
+        logger.info('Found {number} {character} runs'.format(
+            number=len(os.listdir(os.path.join(runs_directory, character_folder))),
+            character=character_folder)
+        )
 
         for run_file in os.listdir(os.path.join(runs_directory, character_folder)):
             with open(os.path.join(runs_directory, character_folder, run_file)) as run:

@@ -1,2 +1,3 @@
 .idea/
 *_TRAINING_DATA
+__pycache__/

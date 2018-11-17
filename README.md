@@ -10,28 +10,29 @@ pip3 install -r requirements.txt
 
 ## Main Idea
 
-- Scrapes local run data into `IRONCLAD_TRAINING_DATA`, `THE_SILENT_TRAINING_DATA`, and `DEFECT_TRAINING_DATA`, using `get_training_data.py`.
-
-- Encoding cards into 1 x 124 vectors with `card_name_to_vector.py`.
+- Scrapes local run data into `IRONCLAD_TRAINING_DATA`, `THE_SILENT_TRAINING_DATA`, and `DEFECT_TRAINING_DATA`, using `get_training_data.py`, and encoding cards into 1 x 234 vectors with `card_name_to_vector.py`.
 
 ```bash
-python3 card_name_to_vector.py
+python3 get_training_data.py
+2018-11-17 11:23:33,921 - learnthespire - INFO - Found 33 IRONCLAD runs
+2018-11-17 11:23:43,529 - learnthespire - INFO - Found 1 DEFECT runs
+2018-11-17 11:23:43,722 - learnthespire - INFO - Found 4 THE_SILENT runs
 ```
 
-- Train a feed-forward neural network with our past run data, using `train_model.py`.
+- Train a feed-forward neural network with our past run data, using `train_model.py`, using the supplied training data file.
 
 ```bash
-python3 train_model.py
-Epoch 1 completed out of 10 loss: 3810.269546604537
-Epoch 2 completed out of 10 loss: 2484.9399606699276
-Epoch 3 completed out of 10 loss: 1977.1163812771513
-Epoch 4 completed out of 10 loss: 1597.0395948176538
-Epoch 5 completed out of 10 loss: 1322.8860301747236
-Epoch 6 completed out of 10 loss: 1115.8326343670508
-Epoch 7 completed out of 10 loss: 952.1410382498252
-Epoch 8 completed out of 10 loss: 821.1171007922635
-Epoch 9 completed out of 10 loss: 717.6960411003183
-Epoch 10 completed out of 10 loss: 634.1040910915835
+python3 train_model.py IRONCLAD_TRAINING_DATA
+2018-11-17 11:20:10,628 - learnthespire - INFO - Epoch 1 completed out of 10 loss: 2664.625208620518
+2018-11-17 11:20:10,922 - learnthespire - INFO - Epoch 2 completed out of 10 loss: 2040.6023952979883
+2018-11-17 11:20:11,225 - learnthespire - INFO - Epoch 3 completed out of 10 loss: 1639.6153593958861
+2018-11-17 11:20:11,522 - learnthespire - INFO - Epoch 4 completed out of 10 loss: 1347.4823346473759
+2018-11-17 11:20:11,828 - learnthespire - INFO - Epoch 5 completed out of 10 loss: 1124.945190030243
+2018-11-17 11:20:12,114 - learnthespire - INFO - Epoch 6 completed out of 10 loss: 960.7809153368064
+2018-11-17 11:20:12,394 - learnthespire - INFO - Epoch 7 completed out of 10 loss: 836.0690773178535
+2018-11-17 11:20:12,673 - learnthespire - INFO - Epoch 8 completed out of 10 loss: 739.9554662491839
+2018-11-17 11:20:12,955 - learnthespire - INFO - Epoch 9 completed out of 10 loss: 661.8177415163109
+2018-11-17 11:20:13,225 - learnthespire - INFO - Epoch 10 completed out of 10 loss: 595.17589914054
 ```
 
 Look at the loss decreasing! This means our model is getting better at predicting what we would pick.

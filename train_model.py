@@ -1,6 +1,9 @@
 import tensorflow as tf
 
 import json
+import sys
+
+from learnthespirelogger import logger
 
 n_nodes_hl1 = 10
 n_nodes_hl2 = 10
@@ -77,9 +80,14 @@ def train_neural_network(dataset, labels):
                         player_choice: epoch_y[__]
                     })
                     epoch_loss += c
-            print('Epoch', epoch + 1, 'completed out of', hm_epochs, 'loss:', epoch_loss)
+
+            logger.info('Epoch {epoch} completed out of {hm_epochs} loss: {epoch_loss}'.format(
+                epoch=epoch + 1,
+                hm_epochs=hm_epochs,
+                epoch_loss=epoch_loss)
+            )
 
 
-with open('IRONCLAD_TRAINING_DATA') as ironclad_training_data_file:
-    dataset = json.load(ironclad_training_data_file)
+with open(sys.argv[1]) as training_data_file:
+    dataset = json.load(training_data_file)
     train_neural_network([_[0] for _ in dataset], [_[1] for _ in dataset])
