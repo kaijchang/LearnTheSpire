@@ -29,7 +29,7 @@ def get_card(card_name, upgraded=False):
         cost = 0
 
     elif type(cost) != int:
-        cost = (re.sub(r'[()]', '', card['Cost']).split()[1] if upgraded else
+        cost = int(re.sub(r'[()]', '', card['Cost']).split()[1] if upgraded else
             re.sub(r'[()]', '', card['Cost']).split()[0])
 
     if upgraded and card['Description (Upgraded)']:

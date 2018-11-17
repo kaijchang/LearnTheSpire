@@ -1,19 +1,21 @@
 import tensorflow as tf
 
-from card_name_to_vector import card_name_to_vector
+import json
 
 n_nodes_hl1 = 10
 n_nodes_hl2 = 10
 
-batch_size = 10
-
 card_vector_size = 234
+
+batch_size = 10
 
 n_choices = 4
 
 card_1 = tf.placeholder('float32', [None, card_vector_size])
 card_2 = tf.placeholder('float32', [None, card_vector_size])
 card_3 = tf.placeholder('float32', [None, card_vector_size])
+
+player_choice = tf.placeholder('float32', [None, n_choices])
 
 
 def build_column(data):
@@ -48,20 +50,36 @@ def neural_network_model():
     output_2 = build_column(card_2)
     output_3 = build_column(card_3)
 
-    return output_1 + output_2 + output_3
+    return tf.add_n([output_1, output_2, output_3])
 
 
-with tf.Session() as sess:
+def train_neural_network(dataset, labels):
     prediction = neural_network_model()
+    cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=prediction, labels=player_choice))
+    optimizer = tf.train.AdamOptimizer().minimize(cost)
 
-    sess.run(tf.global_variables_initializer())
+    hm_epochs = 10
 
-    print(
-        sess.run(
-            prediction, feed_dict={
-                card_1: card_name_to_vector('bash'),
-                card_2: card_name_to_vector('strike'),
-                card_3: card_name_to_vector('defend')
-            }
-        )
-    )
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+
+        for epoch in range(hm_epochs):
+            epoch_loss = 0
+            for _ in range(int(len(dataset) / batch_size)):
+                epoch_x, epoch_y = (dataset[_ * int(len(dataset) / batch_size):_ * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)],
+                                    labels[_ * int(len(dataset) / batch_size):_ * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)])
+
+                for __ in range(len(epoch_x)):
+                    _, c = sess.run([optimizer, cost], feed_dict={
+                        card_1: epoch_x[__][0],
+                        card_2: epoch_x[__][1],
+                        card_3: epoch_x[__][2],
+                        player_choice: epoch_y[__]
+                    })
+                    epoch_loss += c
+            print('Epoch', epoch + 1, 'completed out of', hm_epochs, 'loss:', epoch_loss)
+
+
+with open('IRONCLAD_TRAINING_DATA') as ironclad_training_data_file:
+    dataset = json.load(ironclad_training_data_file)
+    train_neural_network([_[0] for _ in dataset], [_[1] for _ in dataset])

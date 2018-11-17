@@ -2,36 +2,41 @@
 
 Neural Network for choosing which card to pick or whether or not to pick a card at all in Slay the Spire.
 
+## Requirements
+
+```bash
+pip3 install -r requirements.txt
+```
+
 ## Main Idea
 
 - Scrapes local run data into `IRONCLAD_TRAINING_DATA`, `THE_SILENT_TRAINING_DATA`, and `DEFECT_TRAINING_DATA`, using `get_training_data.py`.
 
 - Encoding cards into 1 x 124 vectors with `card_name_to_vector.py`.
 
-```python
-from card_name_to_vector import card_name_to_vector
-
-card_name_to_vector('Bash')
-[[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-'''
-1st position is card cost
-Followed by the count of how many times each word in the Slay the Spire "vocabulary" shows up within the card
-'''
+```bash
+python3 card_name_to_vector.py
 ```
 
-- Feed 3 cards into the neural network and compare the neural network's result to what you picked in your run and use an optimizer function to modify the network to get closer to what you picked, partially implemented in `train_model.py`. Do this for a while until we're satisfied and then save the model for usage.
+- Train a feed-forward neural network with our past run data, using `train_model.py`.
 
-  - Finished neural network structure, now to work on training.
-  
-    ```bash
-    # asks random untrained model to choose between Bash (1st), Strike (2nd), Defend (3rd), and skipping
-    python3 train_model.py
-    #   skip           1st         2nd         3rd
-    [[-15.79862    -1.3561792  -1.8212131   4.652817 ]]
-    ```
+```bash
+python3 train_model.py
+Epoch 1 completed out of 10 loss: 3810.269546604537
+Epoch 2 completed out of 10 loss: 2484.9399606699276
+Epoch 3 completed out of 10 loss: 1977.1163812771513
+Epoch 4 completed out of 10 loss: 1597.0395948176538
+Epoch 5 completed out of 10 loss: 1322.8860301747236
+Epoch 6 completed out of 10 loss: 1115.8326343670508
+Epoch 7 completed out of 10 loss: 952.1410382498252
+Epoch 8 completed out of 10 loss: 821.1171007922635
+Epoch 9 completed out of 10 loss: 717.6960411003183
+Epoch 10 completed out of 10 loss: 634.1040910915835
+```
 
-- Use the model to tell us which card to pick!
+Look at the loss decreasing! This means our model is getting better at predicting what we would pick.
+
+- Store and use the model to tell us which card to pick!
 
 - Go back and evolve this to take more inputs like our existing deck, and maybe even support choosing choices at random events and route choices.
 
