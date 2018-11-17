@@ -1,12 +1,16 @@
 # Learn The Spire
 
-Neural Network for choosing which card to pick or whether or not to pick a card at all in Slay the Spire.
+Neural Network for choosing between cards in Slay the Spire.
 
 ## Requirements
+
+`python3` and `pip3`
 
 ```bash
 pip3 install -r requirements.txt
 ```
+
+I don't know the path for the where the past runs are stored for systems besides MacOS, so it can only locate runs on MacOS at the moment.
 
 ## Main Idea
 
@@ -19,7 +23,7 @@ python3 get_training_data.py
 2018-11-17 11:23:43,722 - learnthespire - INFO - Found 4 THE_SILENT runs
 ```
 
-- Train a feed-forward neural network with our past run data, using `train_model.py`, using the supplied training data file.
+- Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file.
 
 ```bash
 python3 train_model.py IRONCLAD_TRAINING_DATA

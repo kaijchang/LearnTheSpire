@@ -68,16 +68,16 @@ def train_neural_network(dataset, labels):
 
         for epoch in range(hm_epochs):
             epoch_loss = 0
-            for _ in range(int(len(dataset) / batch_size)):
-                epoch_x, epoch_y = (dataset[_ * int(len(dataset) / batch_size):_ * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)],
-                                    labels[_ * int(len(dataset) / batch_size):_ * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)])
+            for batch in range(int(len(dataset) / batch_size)):
+                epoch_x, epoch_y = (dataset[batch * int(len(dataset) / batch_size):batch * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)],
+                                    labels[batch * int(len(dataset) / batch_size):batch * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)])
 
-                for __ in range(len(epoch_x)):
+                for choice in range(len(epoch_x)):
                     _, c = sess.run([optimizer, cost], feed_dict={
-                        card_1: epoch_x[__][0],
-                        card_2: epoch_x[__][1],
-                        card_3: epoch_x[__][2],
-                        player_choice: epoch_y[__]
+                        card_1: epoch_x[choice][0],
+                        card_2: epoch_x[choice][1],
+                        card_3: epoch_x[choice][2],
+                        player_choice: epoch_y[choice]
                     })
                     epoch_loss += c
 
@@ -90,4 +90,4 @@ def train_neural_network(dataset, labels):
 
 with open(sys.argv[1]) as training_data_file:
     dataset = json.load(training_data_file)
-    train_neural_network([_[0] for _ in dataset], [_[1] for _ in dataset])
+    train_neural_network([data[0] for data in dataset], [data[1] for data in dataset])

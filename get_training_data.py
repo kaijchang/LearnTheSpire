@@ -21,14 +21,23 @@ def choice_dict_to_vectors(choice_dict, relics):
             print(choice_dict, relics)
         return [
             [card_name_to_vector(card_name) for card_name in choices],
-            [[0] + [1 if _ == choice_dict['picked'] else 0 for _ in choices]]
+            [[0] + [1 if choice == choice_dict['picked'] else 0 for choice in choices]]
         ]
 
 
 if __name__ == '__main__':
     if sys.platform == 'darwin':
         runs_directory = os.path.expanduser(
-            '~/Library/Application Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources/runs')
+            '~/Library/Application Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources/runs'
+        )
+
+        """
+    elif sys.platform == 'win32':
+        pass
+        
+    elif sys.platform == 'linux':
+        pass
+        """
 
     else:
         raise NotImplementedError
