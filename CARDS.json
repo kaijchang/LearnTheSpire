@@ -728,7 +728,7 @@
     "Description (Upgraded)": "Next turn, gain [G] [G] [G]."
   },
   {
-    "Name": "Piercing Wail",
+    "Name": "PiercingWail",
     "Type": "Skill",
     "Rarity": "Common",
     "Cost": 1,
@@ -768,7 +768,7 @@
     "Description (Upgraded)": ""
   },
   {
-    "Name": "Sneaky Strike",
+    "Name": "Underhanded Strike",
     "Type": "Attack",
     "Rarity": "Common",
     "Cost": 2,
@@ -1152,7 +1152,7 @@
     "Description (Upgraded)": "Enemy loses X+1 Strength. Apply X+1 Weak. Exhaust."
   },
   {
-    "Name": "Nightmare",
+    "Name": "Night Terror",
     "Type": "Skill",
     "Rarity": "Rare",
     "Cost": "3 (2)",
@@ -1264,7 +1264,7 @@
     "Description (Upgraded)": ""
   },
   {
-    "Name": "Claw",
+    "Name": "Gash",
     "Type": "Attack",
     "Rarity": "Common",
     "Cost": 0,
@@ -1344,7 +1344,7 @@
     "Description (Upgraded)": "Gain Block equal to the number of cards in your discard pile +3."
   },
   {
-    "Name": "Steam Barrier",
+    "Name": "Steam Power",
     "Type": "Skill",
     "Rarity": "Common",
     "Cost": 0,
@@ -1384,7 +1384,7 @@
     "Description (Upgraded)": ""
   },
   {
-    "Name": "Auto-Shields",
+    "Name": "Auto Shields",
     "Type": "Skill",
     "Rarity": "Uncommon",
     "Cost": 1,
@@ -1400,7 +1400,7 @@
     "Description (Upgraded)": ""
   },
   {
-    "Name": "Boot Sequence",
+    "Name": "BootSequence",
     "Type": "Skill",
     "Rarity": "Uncommon",
     "Cost": 0,

@@ -36,3 +36,7 @@ Followed by the count of how many times each word in the Slay the Spire "vocabul
 - Go back and evolve this to take more inputs like our existing deck, and maybe even support choosing choices at random events and route choices.
 
 - Fully automated AI Slay the Spire player.
+
+## Credit
+
+The structure of the neural network is heavily based on the one created in [sentdex's series on neural networks](https://www.youtube.com/watch?v=oYbVFhK_olY).

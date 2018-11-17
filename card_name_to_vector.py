@@ -23,9 +23,14 @@ def get_vocab():
 def get_card(card_name, upgraded=False):
     card = next(filter(lambda card: card_name.casefold() == card['Name'].casefold(), cards))
 
-    cost = card['Cost'] if type(card['Cost']) == int else (
-        int(re.sub(r'[()]', '', card['Cost']).split()[1]) if upgraded else
-        int(re.sub(r'[()]', '', card['Cost']).split()[0]))
+    cost = card['Cost']
+
+    if cost == 'X' or cost == 'Unplayable':
+        cost = 0
+
+    elif type(cost) != int:
+        cost = (re.sub(r'[()]', '', card['Cost']).split()[1] if upgraded else
+            re.sub(r'[()]', '', card['Cost']).split()[0])
 
     if upgraded and card['Description (Upgraded)']:
         text = card['Description (Upgraded)']
@@ -33,13 +38,9 @@ def get_card(card_name, upgraded=False):
     else:
         text = card['Description']
 
-        match = re.search(r'[0-9]+ \([0-9]+\)', text)
-
-        while match:
-            text = text[:match.start()] + \
-                   (re.sub(r'[()]', '', match.group(0)).split()[1] if upgraded else \
-                   re.sub(r'[()]', '', match.group(0)).split()[0]) + text[match.end():]
-            match = re.search(r'[0-9]+ \([0-9]+\)', text)
+        text = re.sub(r'[0-9]+ \([0-9]+\)', lambda match:
+            (re.sub(r'[()]', '', match.group(0)).split()[1] if upgraded else
+             re.sub(r'[()]', '', match.group(0)).split()[0]), text)
 
     return cost, text
 
