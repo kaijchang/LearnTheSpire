@@ -69,8 +69,8 @@ def train_neural_network(dataset, labels):
         for epoch in range(hm_epochs):
             epoch_loss = 0
             for batch in range(int(len(dataset) / batch_size)):
-                epoch_x, epoch_y = (dataset[batch * int(len(dataset) / batch_size):batch * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)],
-                                    labels[batch * int(len(dataset) / batch_size):batch * int(len(dataset) / batch_size) + int(len(dataset) / batch_size)])
+                epoch_x, epoch_y = (dataset[batch * int(len(dataset) / batch_size): (batch + 1) * int(len(dataset) / batch_size)],
+                                    labels[batch * int(len(dataset) / batch_size): (batch + 1) * int(len(dataset) / batch_size)])
 
                 for choice in range(len(epoch_x)):
                     _, c = sess.run([optimizer, cost], feed_dict={
@@ -86,6 +86,21 @@ def train_neural_network(dataset, labels):
                 hm_epochs=hm_epochs,
                 epoch_loss=epoch_loss)
             )
+
+        correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(labels, 1))
+
+        accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
+
+        results = []
+
+        for data in range(len(dataset)):
+            results.append(accuracy.eval({
+                card_1: dataset[data][0],
+                card_2: dataset[data][1],
+                card_3: dataset[data][2],
+                player_choice: labels[data]}))
+
+        logger.info('Accuracy: {accuracy}%'.format(accuracy=sum(results) / len(results) * 100))
 
 
 with open(sys.argv[1]) as training_data_file:

@@ -27,21 +27,20 @@ python3 get_training_data.py
 
 ```bash
 python3 train_model.py IRONCLAD_TRAINING_DATA
-2018-11-17 11:20:10,628 - learnthespire - INFO - Epoch 1 completed out of 10 loss: 2664.625208620518
-2018-11-17 11:20:10,922 - learnthespire - INFO - Epoch 2 completed out of 10 loss: 2040.6023952979883
-2018-11-17 11:20:11,225 - learnthespire - INFO - Epoch 3 completed out of 10 loss: 1639.6153593958861
-2018-11-17 11:20:11,522 - learnthespire - INFO - Epoch 4 completed out of 10 loss: 1347.4823346473759
-2018-11-17 11:20:11,828 - learnthespire - INFO - Epoch 5 completed out of 10 loss: 1124.945190030243
-2018-11-17 11:20:12,114 - learnthespire - INFO - Epoch 6 completed out of 10 loss: 960.7809153368064
-2018-11-17 11:20:12,394 - learnthespire - INFO - Epoch 7 completed out of 10 loss: 836.0690773178535
-2018-11-17 11:20:12,673 - learnthespire - INFO - Epoch 8 completed out of 10 loss: 739.9554662491839
-2018-11-17 11:20:12,955 - learnthespire - INFO - Epoch 9 completed out of 10 loss: 661.8177415163109
-2018-11-17 11:20:13,225 - learnthespire - INFO - Epoch 10 completed out of 10 loss: 595.17589914054
+2018-11-17 12:56:13,213 - learnthespire - INFO - Epoch 1 completed out of 10 loss: 2979.932667877604
+2018-11-17 12:56:13,495 - learnthespire - INFO - Epoch 2 completed out of 10 loss: 1761.6639074202915
+2018-11-17 12:56:13,777 - learnthespire - INFO - Epoch 3 completed out of 10 loss: 1344.5543219195952
+2018-11-17 12:56:14,061 - learnthespire - INFO - Epoch 4 completed out of 10 loss: 1101.1279998984428
+2018-11-17 12:56:14,341 - learnthespire - INFO - Epoch 5 completed out of 10 loss: 934.2588043879878
+2018-11-17 12:56:14,623 - learnthespire - INFO - Epoch 6 completed out of 10 loss: 809.4915486584464
+2018-11-17 12:56:14,904 - learnthespire - INFO - Epoch 7 completed out of 10 loss: 709.3352899401771
+2018-11-17 12:56:15,187 - learnthespire - INFO - Epoch 8 completed out of 10 loss: 626.7456984166201
+2018-11-17 12:56:15,472 - learnthespire - INFO - Epoch 9 completed out of 10 loss: 561.5867884071777
+2018-11-17 12:56:15,752 - learnthespire - INFO - Epoch 10 completed out of 10 loss: 509.7387458057201
+2018-11-17 12:56:15,967 - learnthespire - INFO - Accuracy: 41.605839416058394%
 ```
 
-Look at the loss decreasing! This means our model is getting better at predicting what we would pick.
-
-- Store and use the model to tell us which card to pick!
+- Store and use the model to tell us which card to pick.
 
 - Go back and evolve this to take more inputs like our existing deck, and maybe even support choosing choices at random events and route choices.
 
