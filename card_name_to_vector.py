@@ -44,7 +44,7 @@ def get_card(card_name, upgraded=False):
     return cost, text
 
 
-def card_name_to_vectors(card_name):
+def card_name_to_vector(card_name):
     upgraded = False
 
     if card_name[-2:] == '+1':
@@ -53,4 +53,4 @@ def card_name_to_vectors(card_name):
 
     cost, text = get_card(card_name, upgraded)
 
-    return cost, [text.split().count(word) for word in get_vocab()]
+    return [[cost] + [text.split().count(word) for word in get_vocab()]]
