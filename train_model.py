@@ -61,25 +61,25 @@ def train_neural_network(dataset, labels):
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=prediction, labels=player_choice))
     optimizer = tf.train.AdamOptimizer().minimize(cost)
 
-    hm_epochs = 10
+    hm_epochs = 100
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
 
         for epoch in range(hm_epochs):
             epoch_loss = 0
-            for batch in range(int(len(dataset) / batch_size)):
-                epoch_x, epoch_y = (dataset[batch * int(len(dataset) / batch_size): (batch + 1) * int(len(dataset) / batch_size)],
-                                    labels[batch * int(len(dataset) / batch_size): (batch + 1) * int(len(dataset) / batch_size)])
 
-                for choice in range(len(epoch_x)):
-                    _, c = sess.run([optimizer, cost], feed_dict={
-                        card_1: epoch_x[choice][0],
-                        card_2: epoch_x[choice][1],
-                        card_3: epoch_x[choice][2],
-                        player_choice: epoch_y[choice]
-                    })
-                    epoch_loss += c
+            for batch in range(int(len(dataset) / batch_size)):
+                epoch_x, epoch_y = (dataset[batch * batch_size: (batch + 1) * batch_size],
+                                    labels[batch * batch_size: (batch + 1) * batch_size])
+
+                _, c = sess.run([optimizer, cost], feed_dict={
+                    card_1: [data[0] for data in epoch_x],
+                    card_2: [data[1] for data in epoch_x],
+                    card_3: [data[2] for data in epoch_x],
+                    player_choice: epoch_y
+                })
+                epoch_loss += c
 
             logger.info('Epoch {epoch} completed out of {hm_epochs} loss: {epoch_loss}'.format(
                 epoch=epoch + 1,
@@ -91,16 +91,12 @@ def train_neural_network(dataset, labels):
 
         accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
 
-        results = []
-
-        for data in range(len(dataset)):
-            results.append(accuracy.eval({
-                card_1: dataset[data][0],
-                card_2: dataset[data][1],
-                card_3: dataset[data][2],
-                player_choice: labels[data]}))
-
-        logger.info('Accuracy: {accuracy}%'.format(accuracy=sum(results) / len(results) * 100))
+        logger.info('Accuracy: {accuracy}%'.format(accuracy=accuracy.eval({
+            card_1: [data[0] for data in dataset],
+            card_2: [data[1] for data in dataset],
+            card_3: [data[2] for data in dataset],
+            player_choice: labels
+        }) * 100))
 
 
 with open(sys.argv[1]) as training_data_file:

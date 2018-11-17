@@ -54,4 +54,4 @@ def card_name_to_vector(card_name):
 
     cost, text = get_card(card_name, upgraded)
 
-    return [[cost] + [text.split().count(word) for word in get_vocab()]]
+    return [cost] + [text.split().count(word) for word in get_vocab()]

@@ -12,7 +12,7 @@ def choice_dict_to_vectors(choice_dict, relics):
     if choice_dict['picked'] == 'SKIP':
         if len(choice_dict['not_picked']) != 3:
             print(choice_dict, relics)
-        return [[card_name_to_vector(card_name) for card_name in choice_dict['not_picked']], [[1, 0, 0, 0]]]
+        return [[card_name_to_vector(card_name) for card_name in choice_dict['not_picked']], [1, 0, 0, 0]]
 
     else:
         choices = choice_dict['not_picked'] + [choice_dict['picked']]
@@ -21,7 +21,7 @@ def choice_dict_to_vectors(choice_dict, relics):
             print(choice_dict, relics)
         return [
             [card_name_to_vector(card_name) for card_name in choices],
-            [[0] + [1 if choice == choice_dict['picked'] else 0 for choice in choices]]
+            [0] + [1 if choice == choice_dict['picked'] else 0 for choice in choices]
         ]
 
 
