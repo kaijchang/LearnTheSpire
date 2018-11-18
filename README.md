@@ -23,21 +23,24 @@ python3 get_training_data.py
 2018-11-17 11:23:43,722 - learnthespire - INFO - Found 4 THE_SILENT runs
 ```
 
-- Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file.
+- Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file and save it into a models folder.
 
 ```bash
-python3 train_model.py IRONCLAD_TRAINING_DATA
-2018-11-17 13:54:03,478 - learnthespire - INFO - Epoch 1 completed out of 100 loss: 590.5297908782959
-2018-11-17 13:54:03,521 - learnthespire - INFO - Epoch 2 completed out of 100 loss: 475.7371578216553
-2018-11-17 13:54:03,563 - learnthespire - INFO - Epoch 3 completed out of 100 loss: 399.78688859939575
+2018-11-18 07:43:54.581548: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-11-18 07:43:54,830 - learnthespire - INFO - Epoch 1 completed out of 100 loss: 650.9242441654205
+2018-11-18 07:43:54,873 - learnthespire - INFO - Epoch 2 completed out of 100 loss: 550.7045561671257
+2018-11-18 07:43:54,920 - learnthespire - INFO - Epoch 3 completed out of 100 loss: 473.46800112724304
 ...
-2018-11-17 13:54:07,880 - learnthespire - INFO - Epoch 98 completed out of 100 loss: 13.908400133252144
-2018-11-17 13:54:07,928 - learnthespire - INFO - Epoch 99 completed out of 100 loss: 13.723397821187973
-2018-11-17 13:54:07,974 - learnthespire - INFO - Epoch 100 completed out of 100 loss: 13.521378010511398
-2018-11-17 13:54:08,040 - learnthespire - INFO - Accuracy: 82.14285969734192%
+2018-11-18 07:43:59,346 - learnthespire - INFO - Epoch 98 completed out of 100 loss: 19.377360731363297
+2018-11-18 07:43:59,393 - learnthespire - INFO - Epoch 99 completed out of 100 loss: 19.127103462815285
+2018-11-18 07:43:59,439 - learnthespire - INFO - Epoch 100 completed out of 100 loss: 18.884481981396675
+2018-11-18 07:43:59,507 - learnthespire - INFO - Accuracy: 80.0000011920929%
+2018-11-18 07:43:59,590 - learnthespire - INFO - Model saved to ./models/IRONCLAD.model
 ```
 
-After a hundred epochs, which takes around 5 seconds on my computer with this small dataset, we can train a neural network that chooses the same as a human player 82% of the time!
+After a hundred epochs, which takes around 5 seconds with this small dataset, we can train a neural network that chooses the same as a human player 82% of the time.
+
+At around 500 epochs, it can pick with what seems to be 100% accuracy on the dataset, but in reality it's probably much lower because the testing and training sets are the same and there's a small dataset so there could be overfitting.
 
 - Store and use the model to tell us which card to pick.
 

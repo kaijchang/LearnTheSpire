@@ -63,6 +63,8 @@ def train_neural_network(dataset, labels):
 
     hm_epochs = 100
 
+    saver = tf.train.Saver()
+
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
 
@@ -98,7 +100,13 @@ def train_neural_network(dataset, labels):
             player_choice: labels
         }) * 100))
 
+        save_path = saver.save(sess, './models/{character}.model'.format(
+                character=sys.argv[1].split('_')[0]))
 
-with open(sys.argv[1]) as training_data_file:
-    dataset = json.load(training_data_file)
-    train_neural_network([data[0] for data in dataset], [data[1] for data in dataset])
+        logger.info('Model saved to {save_path}'.format(save_path=save_path))
+
+
+if __name__ == '__main__':
+    with open(sys.argv[1]) as training_data_file:
+        dataset = json.load(training_data_file)
+        train_neural_network([data[0] for data in dataset], [data[1] for data in dataset])
