@@ -23,7 +23,7 @@ python3 get_training_data.py
 2018-11-17 11:23:43,722 - learnthespire - INFO - Found 4 THE_SILENT runs
 ```
 
-- Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file and save it into a models folder.
+- Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file and save it to the disk.
 
 ```bash
 2018-11-18 07:43:54.581548: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
@@ -38,11 +38,23 @@ python3 get_training_data.py
 2018-11-18 07:43:59,590 - learnthespire - INFO - Model saved to ./models/IRONCLAD.model
 ```
 
-After a hundred epochs, which takes around 5 seconds with this small dataset, we can train a neural network that chooses the same as a human player 82% of the time.
+After a hundred epochs, which takes around 5 seconds with this small dataset, we can train a neural network that chooses the same as a human player around 80% of the time.
 
 At around 500 epochs, it can pick with what seems to be 100% accuracy on the dataset, but in reality it's probably much lower because the testing and training sets are the same and there's a small dataset so there could be overfitting.
 
-- Store and use the model to tell us which card to pick.
+- Load the model and use it to tell us which card to pick.
+
+```bash
+python3 load_model.py IRONCLAD.model
+Card 1: barricade
+Card 2: limit break
+Card 3: offering
+The Neural Network chooses: Limit Break
+Card 1: shrug it off
+Card 2: true grit
+Card 3: flex
+The Neural Network chooses: True Grit
+```
 
 - Go back and evolve this to take more inputs like our existing deck, and maybe even support choosing choices at random events and route choices.
 

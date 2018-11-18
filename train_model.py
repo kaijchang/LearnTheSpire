@@ -100,7 +100,7 @@ def train_neural_network(dataset, labels):
             player_choice: labels
         }) * 100))
 
-        save_path = saver.save(sess, './models/{character}.model'.format(
+        save_path = saver.save(sess, './{character}.model'.format(
                 character=sys.argv[1].split('_')[0]))
 
         logger.info('Model saved to {save_path}'.format(save_path=save_path))

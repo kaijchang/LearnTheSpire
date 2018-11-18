@@ -1,4 +1,5 @@
 .idea/
 *_TRAINING_DATA
 __pycache__/
-models/
+checkpoint
+*.model.*
