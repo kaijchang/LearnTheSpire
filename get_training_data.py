@@ -31,10 +31,10 @@ if __name__ == '__main__':
             '~/Library/Application Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources/runs'
         )
 
-        """
     elif sys.platform == 'win32':
-        pass
-        
+        runs_directory = 'C:\\Steam\\steamapps\\common\\SlayTheSpire\\runs'
+
+        """
     elif sys.platform == 'linux':
         pass
         """

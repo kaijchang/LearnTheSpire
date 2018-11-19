@@ -1,6 +1,6 @@
 # Learn The Spire
 
-Neural Network for choosing between cards in Slay the Spire.
+Neural Network for choosing between cards in Slay the Spire using Tensorflow.
 
 ## Requirements
 
@@ -9,8 +9,7 @@ Neural Network for choosing between cards in Slay the Spire.
 ```bash
 pip3 install -r requirements.txt
 ```
-
-I don't know the path for the where the past runs are stored for systems besides MacOS, so it can only locate runs on MacOS at the moment.
+Should be able to locate runs on Windows and macOS.
 
 ## Main Idea
 
