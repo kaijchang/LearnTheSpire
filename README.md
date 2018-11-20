@@ -17,25 +17,24 @@ Should be able to locate runs on Windows and macOS.
 
 ```bash
 python3 get_training_data.py
-2018-11-17 11:23:33,921 - learnthespire - INFO - Found 33 IRONCLAD runs
-2018-11-17 11:23:43,529 - learnthespire - INFO - Found 1 DEFECT runs
-2018-11-17 11:23:43,722 - learnthespire - INFO - Found 4 THE_SILENT runs
+2018-11-19 19:32:55,940 - learnthespire - INFO - Found 37 IRONCLAD runs
+2018-11-19 19:33:07,705 - learnthespire - INFO - Found 1 DEFECT runs
+2018-11-19 19:33:07,895 - learnthespire - INFO - Found 4 THE_SILENT runs
 ```
 
 - Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file and save it to the disk.
 
 ```bash
 python3 train_model.py IRONCLAD_TRAINING_DATA
-2018-11-18 07:43:54.581548: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2018-11-18 07:43:54,830 - learnthespire - INFO - Epoch 1 completed out of 100 loss: 650.9242441654205
-2018-11-18 07:43:54,873 - learnthespire - INFO - Epoch 2 completed out of 100 loss: 550.7045561671257
-2018-11-18 07:43:54,920 - learnthespire - INFO - Epoch 3 completed out of 100 loss: 473.46800112724304
+2018-11-19 19:33:30,393 - learnthespire - INFO - Epoch 1 completed out of 100 loss: 719.8838911056519
+2018-11-19 19:33:30,444 - learnthespire - INFO - Epoch 2 completed out of 100 loss: 551.330732345581
+2018-11-19 19:33:30,496 - learnthespire - INFO - Epoch 3 completed out of 100 loss: 456.9212851524353
 ...
-2018-11-18 07:43:59,346 - learnthespire - INFO - Epoch 98 completed out of 100 loss: 19.377360731363297
-2018-11-18 07:43:59,393 - learnthespire - INFO - Epoch 99 completed out of 100 loss: 19.127103462815285
-2018-11-18 07:43:59,439 - learnthespire - INFO - Epoch 100 completed out of 100 loss: 18.884481981396675
-2018-11-18 07:43:59,507 - learnthespire - INFO - Accuracy: 80.0000011920929%
-2018-11-18 07:43:59,590 - learnthespire - INFO - Model saved to ./models/IRONCLAD.model
+2018-11-19 19:33:35,955 - learnthespire - INFO - Epoch 98 completed out of 100 loss: 21.039612337946892
+2018-11-19 19:33:36,007 - learnthespire - INFO - Epoch 99 completed out of 100 loss: 20.799650326371193
+2018-11-19 19:33:36,062 - learnthespire - INFO - Epoch 100 completed out of 100 loss: 20.55322101712227
+2018-11-19 19:33:36,136 - learnthespire - INFO - Accuracy: 79.49526906013489%
+2018-11-19 19:33:36,225 - learnthespire - INFO - Model saved to ./IRONCLAD.model
 ```
 
 After a hundred epochs, which takes around 5 seconds with this small dataset, we can train a neural network that chooses the same as a human player around 80% of the time.

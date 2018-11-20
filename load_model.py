@@ -27,7 +27,7 @@ with tf.Session() as sess:
         try:
             while True:
                 try:
-                    card_1_name = input('Card 1: ')
+                    card_1_name = input('Card 1: ').strip()
                     card_1_vector = card_name_to_vector(card_1_name)
                     break
 
@@ -36,7 +36,7 @@ with tf.Session() as sess:
 
             while True:
                 try:
-                    card_2_name = input('Card 2: ')
+                    card_2_name = input('Card 2: ').strip()
                     card_2_vector = card_name_to_vector(card_2_name)
                     break
 
@@ -45,7 +45,7 @@ with tf.Session() as sess:
 
             while True:
                 try:
-                    card_3_name = input('Card 3: ')
+                    card_3_name = input('Card 3: ').strip()
                     card_3_vector = card_name_to_vector(card_3_name)
                     break
 
