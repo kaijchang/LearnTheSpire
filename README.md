@@ -25,6 +25,7 @@ python3 get_training_data.py
 - Train a feed-forward neural network with our past run data with `train_model.py`, using the supplied training data file and save it to the disk.
 
 ```bash
+python3 train_model.py IRONCLAD_TRAINING_DATA
 2018-11-18 07:43:54.581548: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
 2018-11-18 07:43:54,830 - learnthespire - INFO - Epoch 1 completed out of 100 loss: 650.9242441654205
 2018-11-18 07:43:54,873 - learnthespire - INFO - Epoch 2 completed out of 100 loss: 550.7045561671257
