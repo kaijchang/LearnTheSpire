@@ -8,7 +8,7 @@ from card_name_to_vector import card_name_to_vector
 from learnthespirelogger import logger
 
 
-def choice_dict_to_vectors(choice_dict, relics):
+def choice_dict_to_vectors(choice_dict):
     if choice_dict['picked'] == 'SKIP':
         if len(choice_dict['not_picked']) != 3:
             print(choice_dict, relics)
@@ -17,8 +17,7 @@ def choice_dict_to_vectors(choice_dict, relics):
     else:
         choices = choice_dict['not_picked'] + [choice_dict['picked']]
         random.shuffle(choices)
-        if len(choices) != 3:
-            print(choice_dict, relics)
+
         return [
             [card_name_to_vector(card_name) for card_name in choices],
             [0] + [1 if choice == choice_dict['picked'] else 0 for choice in choices]
@@ -66,7 +65,7 @@ if __name__ == '__main__':
                 if 'Question Card' in relics or 'Molten Egg 2' in relics:
                     continue
 
-                training_data += [choice_dict_to_vectors(choice_dict, relics) for choice_dict in run_data['card_choices']]
+                training_data += [choice_dict_to_vectors(choice_dict) for choice_dict in run_data['card_choices']]
 
                 with open('{character_folder}_TRAINING_DATA'.format(character_folder=character_folder), 'w') as training_data_file:
                     json.dump(training_data, training_data_file)
